@@ -1,0 +1,11 @@
+<ul class="detail-list" ng-repeat="detail in details">
+	<li>{{detail.snippet}}</li>
+</ul>
+
+<input type="button" value="Add more detail"
+	ng-click="toggleAddingState()" ng-hide="shouldDisplayAddBtn()">
+
+<div ng-show="addingState" >
+	<input type=text ng-model="detailField" />
+	<input type="button" ng-click="submitNewDetail()" value="submit new detail">
+</div>

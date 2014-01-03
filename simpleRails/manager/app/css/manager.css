@@ -1,0 +1,36 @@
+.rounded-frame{
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 2px solid blue;
+	padding: 5px 5px 5px 5px;
+	background-color: #44bbdd;
+} .user-input{
+	display: block;
+} .phone {
+	margin-left: -25px;
+} .each-phone{
+	padding: 5px 5px 5px 5px;
+	border: 2px solid blue;
+	border-radius: 5px;
+	margin-bottom: 5px;
+	max-width: 300px;
+} .others {
+	border-radius: 5px;
+	border: 2px solid blue;
+	max-width: 500px;
+} li {
+	list-style-type: none;
+} .phone-filter {
+	margin-top: 5px;
+	padding-top: 5px;
+} span {
+	display: inline-block;
+} .rhs {
+	position: absolute;
+	margin-left: 20px;
+	margin-top: -10px;
+} .lhs {
+	margin-top: -10px;
+} .phone-edit {
+	padding-top: 25px;
+}

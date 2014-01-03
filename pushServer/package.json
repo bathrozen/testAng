@@ -1,0 +1,9 @@
+{
+  "name": "warm-pushServer",
+  "version": "0.1.0",
+  "devDependencies": {
+    "socket.io": "0.9.16",
+    "express": "3.4.6",
+    "redis": "0.9.1"
+  }
+}
