@@ -57,7 +57,7 @@ angular.module('phonecatApp')
 })
 
 .factory('angularSocket', function($rootScope){
-  var socket = io.connect('http://localhost:4000',{
+  var socket = io.connect('http://warm.paiges.net:4000',{
     'sync disconnect on unload': true });
   socket.emit('join');
   return socket;
