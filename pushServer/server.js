@@ -12,8 +12,6 @@ app.use( express.static(__dirname + '/socket.io'));
 server.listen(4000);
 
 io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
 });
 
 io.sockets.on('connection', function(socket){
