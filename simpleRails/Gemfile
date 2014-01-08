@@ -18,10 +18,10 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'redis', '~> 3.0.6'
 
-gem 'omniauth'
 
 gem "devise", "~> 3.2.2"
 
+gem 'omniauth'
 gem 'omniauth-facebook'
 
 # gem "pg", "~> 0.17.0"
