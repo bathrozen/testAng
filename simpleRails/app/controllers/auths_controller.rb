@@ -1,18 +1,23 @@
-require 'omniauth'
+require "omniauth-facebook"
 
 class AuthsController < ApplicationController
 
   def initialize
-    client_id = "client_id"
-    client_secret = "client_secret"
-    client_url = 'app_url'
-    client_redirect_url = 'redirect_uri'
+    # client_id = "420575864742428"
+    # client_secret = "a966829a80414b252d1e30e16d3ef77a"
+    # client_url = 'http://127.0.0.1:3000'
+    # client_redirect_url = '/phones'
 
-    client = OAuth2::Client.new(client_id, client_secret, :token_url => '/auth/facebook', :site =>'https://facebook.com')
+    # client = OAuth2::Client.new(client_id, client_secret, :token_url => '/auths/facebook', :site =>'https://facebook.com')
 
-    token_request = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:3000/auth/callback')
-    token_request.options[:header_format] = "OAuth %s"
-    token_string = token_request.token
+    # p 'CLIENTTTTTTTTTTTTTTTTT'
+    # p client
+
+    # token_request = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:3000/auth/callback')
+    # token_request.options[:header_format] = "OAuth %s"
+    # token_string = token_request.token
+
+    # config.omniauth :facebook, "420575864742428", "a966829a80414b252d1e30e16d3ef77a"
   end
 
   def new
