@@ -1,7 +1,7 @@
 class PhonesController < ApplicationController
 
   def index
-    render :file => File.join(Rails.root, 'public', 'index.html'), :layout => nil
+    render :file => File.join(Rails.root, 'public_2', 'index.html'), :layout => nil
   end
 
 end

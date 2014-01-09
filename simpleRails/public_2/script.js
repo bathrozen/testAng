@@ -22191,6 +22191,7 @@ angular.module('ui.router.compat')
 			});
 
       inpField.bind('blur', function(evt){
+          console.log('evt', evt);
         if (evt.relatedTarget.value !== 'edit') {
           scope.$apply(function(){
             scope.editState = false;
@@ -22220,43 +22221,43 @@ angular.module('ui.router.compat')
 
 .directive('newPhoneBehavior', function(){
   return {
-      restrict: 'A',
-      scope: {
-				submitNewPhone: "=createNewPhone",
-				isValid: "=isValid"
-      },
-      link: function(scope, element, attrs){
+    restrict: 'A',
+    scope: {
+			submitNewPhone: "=createNewPhone",
+			isValid: "=isValid"
+    },
+    link: function(scope, element, attrs){
 
-        var name = angular.el(element, '.name-input'),
-					snippet = angular.el(element, '.snippet-input'),
-					submitBtn = angular.el(element, '.submitBtn'),
-					errorMsg = angular.el(element, '.error-message');
+      var name = angular.el(element, '.name-input'),
+				snippet = angular.el(element, '.snippet-input'),
+				submitBtn = angular.el(element, '.submitBtn'),
+				errorMsg = angular.el(element, '.error-message');
 
-				submitBtn.bind('click', function(){
-					if(scope.isValid(name.val()) && scope.isValid(snippet.val())) {
-						scope.submitNewPhone({name: scope.name, snippet: scope.snippet});
-						clearField();
-					} else {
-						errorMsg.text('name or snippet is blank');
-					}
-				});
-
-				snippet.bind('keydown', function(evt){
-					if (event.which === 13) {
-						scope.$apply(function(){
-							scope.submitNewPhone();
-						});
-						clearField();
-					}
-				});
-
-				function clearField(){
-					name.val('');
-					snippet.val('');
-					errorMsg.text('');
+			submitBtn.bind('click', function(){
+				if(scope.isValid(name.val()) && scope.isValid(snippet.val())) {
+					scope.submitNewPhone({name: scope.name, snippet: scope.snippet});
+					clearField();
+				} else {
+					errorMsg.text('name or snippet is blank');
 				}
+			});
 
-      }
+			snippet.bind('keydown', function(evt){
+				if (event.which === 13) {
+					scope.$apply(function(){
+						scope.submitNewPhone();
+					});
+					clearField();
+				}
+			});
+
+			function clearField(){
+				name.val('');
+				snippet.val('');
+				errorMsg.text('');
+			}
+
+    }
   };
 
 });
@@ -22342,7 +22343,7 @@ angular.module('ui.router.compat')
 })
 
 .factory('angularSocket', function($rootScope){
-  var socket = io.connect('http://localhost:4000',{
+  var socket = io.connect('http://warm.paiges.net:4000',{
     'sync disconnect on unload': true });
   socket.emit('join');
   return socket;
