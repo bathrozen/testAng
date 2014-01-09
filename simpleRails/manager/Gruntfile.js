@@ -16,6 +16,7 @@ module.exports = function(grunt) {
         src: [
           'app/js/lib/angular.min.js',
           'app/js/lib/angular-ui.js',
+          'app/js/lib/facebook.js',
           'app/js/declare.js',
           'app/js/controllers/*',
           'app/js/directives/*',
@@ -53,9 +54,9 @@ module.exports = function(grunt) {
     copy: {
       manager: {
         files: [
-          {src: ['.build/script.js'], dest: '../public_2/script.js'},
+          {src: ['.build/script.js'], dest: '../public/script.js'},
           {src: ['app/index.html'], dest: '../public_2/index.html'},
-          {src: ['.build/manager.css'], dest: '../public_2/manager.css'}
+          {src: ['.build/manager.css'], dest: '../public/manager.css'}
         ]
       }
     },karma: {
