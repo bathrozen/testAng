@@ -45,7 +45,6 @@ module Api
     end
 
     def destroy
-      p params
       persistedPhone = Phone.find_by_id(params[:id])
       phone = attrFilter(persistedPhone, params['sessionID'])
       @redis.publish('delete-phone', phone.to_json)
