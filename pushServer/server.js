@@ -30,7 +30,13 @@ redisClient.on("message", function (message, data) {
 });
 
 function broadcast(message, data){
+  var parsed = JSON.parse(data),
+    sessionID = parsed.sessionID;
+    delete parsed.sessionID;
   Object.keys(sockets).forEach(function(key){
+    console.log('sessionID', sessionID);
+    console.log('socket', sessionID);
+    if (sessionID === sockets[key].id) { return; }
     sockets[key].emit(message, data);
   });
 }
