@@ -14,11 +14,12 @@ module Api
     end
 
     def update
-      phone = Phone.find_by_id(params[:id])
-      phone['name'] = params['name']
-      if result = phone.save
+      persistedPhone = Phone.find_by_id(params[:id])
+      persistedPhone['name'] = params['phone']['name']
+      if result = persistedPhone.save
+        phone = attrFilter(persistedPhone, params['sessionID'])
         @redis.publish('update-phone', phone.to_json)
-        render :json => {:status => 'success'}
+        render :json => {:status => 'success', :data => phone}
       else
         render :json => {:status => 'fail', :error => result.errors}
       end
@@ -37,16 +38,25 @@ module Api
     end
 
     def create
-      persistedPhone = Phone.addPhone(params)
-      @redis.publish('new-phone', persistedPhone.to_json)
-      render :json => {:status => 'success'}
+      persistedPhone = Phone.addPhone(params['phone'])
+      phone = attrFilter(persistedPhone, params['sessionID'])
+      @redis.publish('new-phone', phone.to_json)
+      render :json => {:status => 'success', :data => phone}
     end
 
     def destroy
-      phone = Phone.find_by_id(params[:id])
+      p params
+      persistedPhone = Phone.find_by_id(params[:id])
+      phone = attrFilter(persistedPhone, params['sessionID'])
       @redis.publish('delete-phone', phone.to_json)
-      phone.destroy
-      render :json => {:status => 'success'}
+      persistedPhone.destroy
+      render :json => {:status => 'success', :data => phone}
+    end
+
+private
+
+    def attrFilter(persistence, sessionID)
+       {:id => persistence['id'], :name => persistence['name'], :sessionID => sessionID}
     end
 
   end

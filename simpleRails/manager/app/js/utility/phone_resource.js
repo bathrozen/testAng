@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.factory('phoneResource', function($http){
+.factory('phoneResource', function($http, angularSocket){
 	var phoneRes = {};
 
 	phoneRes.get = function(){
@@ -8,15 +8,17 @@ angular.module('phonecatApp')
 	};
 
 	phoneRes.new = function(phone){
-		return $http.post('/api/phones', phone);
+		var data = {phone: phone, sessionID: angularSocket.socket.sessionid};
+		return $http.post('/api/phones', data);
 	};
 
 	phoneRes.update = function(phone){
-		return $http.put('/api/phones/'+phone.id, phone);
+		var data = {phone: phone, sessionID: angularSocket.socket.sessionid};
+		return $http.put('/api/phones/'+phone.id, data);
 	};
 
 	phoneRes.delete = function(phone){
-		return $http.delete('/api/phones/'+phone.id);
+		return $http.delete('/api/phones/'+phone.id+'?sessionID='+angularSocket.socket.sessionid);
 	};
 
 	return phoneRes;

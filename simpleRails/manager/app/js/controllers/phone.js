@@ -1,17 +1,15 @@
 angular.module('phonecatApp')
 
-.controller('PhoneIndexCtrl', function ($scope, $state, $stateParams, indexOfByID, phoneResource, msgHandler) {
+.controller('PhoneIndexCtrl', function ($scope, $state, $stateParams, indexOfByID, phoneResource, angularSocket) {
 
 	init();
-
-	phoneResource.get().then(function(response){
-		$scope.phones = response.data.data;
-	});
 
 	$scope.editPhone = function(phone){
 		phoneResource.update(phone).then(function(response){
 			if (response.data.status === 'fail') {
 				// failllll someone do something
+			} else {
+				updatePhone(response.data.data);
 			}
 		});
 	};
@@ -20,6 +18,8 @@ angular.module('phonecatApp')
 		phoneResource.delete(phone).then(function(response){
 			if (response.data.status === 'fail') {
 				// failllll someone do something
+			} else {
+				deletePhone(response.data.data);
 			}
 		});
 	};
@@ -29,35 +29,63 @@ angular.module('phonecatApp')
 	};
 
 	function init(){
-		var handlers = {
-			newPhone: function(scope, phone){
-				scope.phones.push(phone);
-			},
-			deletePhone: function(scope, phone){
-				var target = indexOfByID(phone, scope.phones)[0];
-				scope.phones.splice(target, 1);
-			},
-			updatePhone: function(scope, phone){
-				var target = indexOfByID(phone, scope.phones)[0];
-				scope.phones[target] = phone;
-			}
-		};
+
+		phoneResource.get().then(function(response){
+			$scope.phones = response.data.data;
+		});
+
 		$scope.editState = true;
-		msgHandler(['new-phone', 'delete-phone', 'update-phone'], handlers, $scope);
+
+		$scope.$on('new-phone', function(evt, phone) {
+			newPhone(phone);
+		});
+
+		angularSocket.on('new-phone', function(data){
+			$scope.$apply(function(){
+				newPhone(JSON.parse(data));
+			});
+		});
+
+		angularSocket.on('update-phone', function(data){
+			$scope.$apply(function(){
+				updatePhone(JSON.parse(data));
+			});
+		});
+
+		angularSocket.on('delete-phone', function(data){
+			$scope.$apply(function(){
+				deletePhone(JSON.parse(data));
+			});
+		});
+	}
+
+	function newPhone(phone){
+		$scope.phones.push(phone);
+	}
+
+	function updatePhone(phone){
+		var target = indexOfByID(phone, $scope.phones)[0];
+		$scope.phones[target] = phone;
+	}
+
+	function deletePhone(phone){
+		var target = indexOfByID(phone, $scope.phones)[0];
+			$scope.phones.splice(target, 1);
 	}
 
 })
 
-.controller('PhoneNewCtrl', function ($scope, $http, isValid, phoneResource) {
+.controller('PhoneNewCtrl', function ($scope, $http, $rootScope, isValid, phoneResource) {
 
 	$scope.isValid = isValid;
 
 	$scope.submitNewPhone = function(){
-		// talk to rails server
 		var phone = {name: $scope.name, snippet: $scope.snippet};
 		phoneResource.new(phone).then(function(response){
 			if (response.data.status === 'fail') {
 				// failllll someone do something
+			} else {
+				$rootScope.$broadcast('new-phone', response.data.data);
 			}
 		});
 	};
