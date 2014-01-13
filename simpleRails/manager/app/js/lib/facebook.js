@@ -53,6 +53,7 @@ window.fbAsyncInit = function() {
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
+      window.location.href=”login.jsp?backurl=”+window.location.href;
       console.log('Good to see you, ' + response.name + '.');
     });
   }
