@@ -13,16 +13,10 @@ class AuthsController < ApplicationController
     p 'CLIENTTTTTTTTTTTTTTTTT'
     p client
 
-    token_request = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://warm.paiges.net:3000/auth/callback')
+    # token_request = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://warm.paiges.net:3000/auth/callback')
+    # token_request.options[:header_format] = "OAuth %s"
+    # token_string = token_request.token
 
-    p "token_request"
-    p token_request
-
-    token_request.options[:header_format] = "OAuth %s"
-    token_string = token_request.token
-
-    p 'token_string'
-    p token_string
     # config.omniauth :facebook, "420575864742428", "a966829a80414b252d1e30e16d3ef77a"
   end
 

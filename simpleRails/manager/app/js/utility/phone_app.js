@@ -35,29 +35,8 @@ angular.module('phonecatApp')
   };
 })
 
-.factory('msgHandler', function(angularSocket){
-  return function(msgs, handlers, scope){
-    msgs.forEach(function(msg){
-      angularSocket.on(msg, function(data){
-        var handlerName = msgToHandlerName(msg), parsed;
-        if (data) { parsed = JSON.parse(data); }
-        scope.$apply(function(){
-          handlers[handlerName](scope, parsed);
-        });
-      });
-    });
-  };
-
-  function msgToHandlerName(msg){
-    var  idx = msg.indexOf('-', 0),
-      lowCharactor = msg[idx+1];
-    return msg.replace('-' + lowCharactor, lowCharactor.toUpperCase());
-  }
-
-})
-
 .factory('angularSocket', function($rootScope){
-  var socket = io.connect('http://warm.paiges.net:4000',{
+  var socket = io.connect('http://127.0.0.1:4000',{
     'sync disconnect on unload': true });
   socket.emit('join');
   return socket;

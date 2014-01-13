@@ -35,10 +35,17 @@ angular.module('phonecatApp')
 			});
 
       inpField.bind('blur', function(evt){
-        if (evt.relatedTarget.value !== 'edit') {
+        if (evt.relatedTarget === null) {
           scope.$apply(function(){
             scope.editState = false;
           });
+        }
+        if (evt.relatedTarget !== null) {
+          if (evt.relatedTarget.value === 'edit') {
+            scope.$apply(function(){
+              scope.editState = true;
+            });
+          }
         }
         inpField.val(preEdit);
         spanField.html(preEdit);
