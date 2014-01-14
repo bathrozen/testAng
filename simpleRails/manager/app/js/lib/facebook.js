@@ -53,7 +53,7 @@ window.fbAsyncInit = function() {
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      window.location.href='/warm.paiges.net:3000';
+      window.location.replace='/warm.paiges.net:3000';
       console.log('Good to see you, ' + response.name + '.');
     });
   }
