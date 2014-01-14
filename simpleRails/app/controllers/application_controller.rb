@@ -9,19 +9,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def fbAuthen(user)
-    if user
-      p 'no user222222222222222222'
-      render :file => File.join(Rails.root, 'public', 'auth.html'), :layout => nil
+    if params['FID']
+      p 'no user'
+      # render :file => File.join(Rails.root, 'public', 'auth.html'), :layout => nil
+    else
+      sign_in find_user
     end
   end
 
-  def findUser
-    p 'find userrrrrrrrrrrr'
+  def find_user
     if !(user = User.find_by_fID(params['fID']))
-      p 'create_by_fIDDDDDDDDDDDDDDDDDD'
-      User.create_by_fID(params['fID']);
+      p 'create_by_fID'
+      User.create_from_fID(user_data);
     else
-      p 'user existtttttttttttttttt'
+      p 'user is exist'
       user
     end
   end
