@@ -10,14 +10,18 @@ class ApplicationController < ActionController::Base
 
   def fbAuthen(user)
     if user
+      p 'no user222222222222222222'
       render :file => File.join(Rails.root, 'public', 'auth.html'), :layout => nil
     end
   end
 
   def findUser
+    p 'find userrrrrrrrrrrr'
     if !(user = User.find_by_fID(params['fID']))
+      p 'create_by_fIDDDDDDDDDDDDDDDDDD'
       User.create_by_fID(params['fID']);
     else
+      p 'user existtttttttttttttttt'
       user
     end
   end
