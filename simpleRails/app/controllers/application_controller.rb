@@ -9,7 +9,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def fbAuthen
-    render :file => File.join(Rails.root, 'public', 'auth.html'), :layout => nil
+    if !params['fID']
+      render :file => File.join(Rails.root, 'public', 'auth.html'), :layout => nil
+    else
+      render :file => File.join(Rails.root, 'public_2', 'index.html'), :layout => nil
   end
 
 end
