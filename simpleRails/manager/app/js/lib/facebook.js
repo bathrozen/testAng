@@ -18,7 +18,6 @@ window.fbAsyncInit = function() {
       // have logged in to the app.
       testAPI();
     } else if (response.status === 'not_authorized') {
-      console.log('111111111');
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so.
       // In real-life usage, you wouldn't want to immediately prompt someone to login
@@ -28,11 +27,10 @@ window.fbAsyncInit = function() {
       // (2) it is a bad experience to be continually prompted to login upon page load.
       FB.login();
     } else {
-      console.log('2s222222222');
       // In this case, the person is not logged into Facebook, so we call the login()
       // function to prompt them to do so. Note that at this stage there is no indication
       // of whether they are logged into the app. If they aren't then they'll see the Login
-      // dialog right after they log in to Facebook.
+      // dialog right gr they log in to Facebook.
       // The same caveats as above apply to the FB.login() call here.
       FB.login();
     }
@@ -53,7 +51,22 @@ window.fbAsyncInit = function() {
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      window.location.replace='/warm.paiges.net:3000';
+      var xmlhttp = new window.XMLHttpRequest(),
+        data = dataFilter(response);
+
+      xmlhttp.open('GET', '/phones?fID='+data.id+'&name='+data.name, true);
+      xmlhttp.send();
+
       console.log('Good to see you, ' + response.name + '.');
     });
+
+    function dataFilter(data){
+      return {
+        id: data.id,
+        name: data.name
+      };
+    }
+
   }
+
+  
