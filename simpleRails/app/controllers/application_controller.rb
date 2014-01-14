@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def find_user
     if !(user = User.find_by_fID(params['fID']))
       p 'create_by_fID'
-      User.create_from_fID(params['fID]);
+      User.create_from_fID(params['fID']);
     else
       p 'user is exist'
       user
