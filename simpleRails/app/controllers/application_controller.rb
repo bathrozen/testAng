@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 
   # before_filter :authenticate_user!
 
-  before_filter :findUser
+  before_filter :find_user
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def find_user
     if !(user = User.find_by_fID(params['fID']))
       p 'create_by_fID'
-      User.create_from_fID(user_data);
+      User.create_from_fID(params['fID]);
     else
       p 'user is exist'
       user
