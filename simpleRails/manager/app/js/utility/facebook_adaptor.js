@@ -44,7 +44,11 @@ angular.module('phonecatApp')
         xmlhttp.send();
 
         console.log('scope.isLogin', scope.isLogin);
-        scope.isLogin = true;
+
+        scope.$apply(function(){
+          scope.isLogin = true;
+        });
+
         console.log('scope.isLogin', scope.isLogin);
 
         console.log('Good to see you, ' + response.name + '.');
