@@ -1,5 +1,5 @@
 angular.module('phonecatApp')
-.controller('DetailShowCtrl', function($scope, $stateParams, detail, newDetail, msgHandler){
+.controller('DetailShowCtrl', function($scope, $stateParams, detail, newDetail, angularSciket){
 
 	init();
 
@@ -21,24 +21,34 @@ angular.module('phonecatApp')
 		return $scope.isPhoneDeleted && $scope.details.length;
 	};
 
+	angularSocket.on('new-detail', function(data){
+		$scope.$apply(function(){
+			addDetail(JSON.parse(data));
+		});
+	});
+
+	angularSocket.on('delete-phone', function(data){
+		if ($stateParams.id == phone.id){
+			$scope.details = [{snippet: 'phone has been deleted'}];
+		}
+		$scope.isPhoneDeleted = true;
+	});
+
+	function addDetail(detail){
+		if ($stateParams.id == detail.phone_id){ $scope.details.push(detail); }
+	}
+
+	function deletedPhone(){
+		if ($stateParams.id == phone.id){
+			$scope.details = [{snippet: 'phone has been deleted'}];
+		}
+		$scope.isPhoneDeleted = true;
+	}
+
 	function init(){
 		$scope.details = detail.data.data;
 		$scope.addingState = false;
 		$scope.isPhoneDeleted = false;
-
-		var handlers = {
-			newDetail: function(scope, detail){
-				if ($stateParams.id == detail.phone_id){ $scope.details.push(detail); }
-			},
-			deletePhone: function(scope, phone){
-				if ($stateParams.id == phone.id){
-					$scope.details = [{snippet: 'phone has been deleted'}];
-				}
-				$scope.isPhoneDeleted = true;
-			}
-		};
-
-		msgHandler(['new-detail', 'delete-phone'], handlers, $scope);
 	}
 
 });
