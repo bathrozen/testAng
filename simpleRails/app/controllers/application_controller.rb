@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_authen
-    sign_in @user
+#    sign_in @user
     render :file => File.join(Rails.root, 'public_2', 'index.html'), :layout => nil
   end
 
