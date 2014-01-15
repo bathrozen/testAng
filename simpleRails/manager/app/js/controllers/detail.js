@@ -1,5 +1,5 @@
 angular.module('phonecatApp')
-.controller('DetailShowCtrl', function($scope, $stateParams, detail, newDetail, angularScoket){
+.controller('DetailShowCtrl', function($scope, $stateParams, detail, newDetail, angularSocket){
 
 	init();
 
