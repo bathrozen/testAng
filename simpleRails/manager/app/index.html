@@ -9,22 +9,34 @@
 	</head>
 	<body>
 
-		<nav class="navbar navbar-default">
-			<span class="phone-filter">
-			  Search: <input ng-model="query">
-			  Sort by: <select ng-model="orderProp">
-			    <option value="name">Alphabetical</option>
-			    <option value="age">Newest</option>
-			  </select>
-			</span>
-			<span> <a ui-sref="phones_new">New_Phone</a> </span>
-		</nav>
+		<span ng-controller="LoginCtrl">
 
-		<span class="lhs">
-			<span class="phones" ng-include src="'phones/index.html'"></span>
-		</span>
-		<span class="rhs">
-			<span class="others" ui-view></span>
+				<nav class="navbar navbar-default">
+
+					<div id="fb-root"></div>
+						<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+
+					<span ng-show="isLogin">
+						<span class="phone-filter">
+						  Search: <input ng-model="query">
+						  Sort by: <select ng-model="orderProp">
+						    <option value="name">Alphabetical</option>
+						    <option value="age">Newest</option>
+						  </select>
+						</span>
+						<span> <a ui-sref="phones_new">New_Phone</a> </span>
+					</span>
+				</nav>
+
+				<span ng-show="isLogin">
+					<span class="lhs">
+						<span class="phones" ng-include src="'phones/index.html'"></span>
+					</span>
+					<span class="rhs">
+						<span class="others" ui-view></span>
+					</span>
+				</span>
+
 		</span>
 
 	</body>
