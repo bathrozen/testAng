@@ -41,7 +41,6 @@ module.exports = function(grunt) {
         'app/js/directives/*',
         'app/js/utility/*',
         'app/js/real_time/*',
-        'app/js/lib/facebook.js',
         'app/index.html',
 
         'app/views/partials/*.html',
