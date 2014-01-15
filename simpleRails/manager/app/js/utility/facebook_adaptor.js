@@ -43,15 +43,10 @@ angular.module('phonecatApp')
         xmlhttp.open('GET', '/phones?fID='+data.id+'&name='+data.name, true);
         xmlhttp.send();
 
-        console.log('scope.isLogin', scope.isLogin);
-
         scope.$apply(function(){
           scope.isLogin = true;
         });
 
-        console.log('scope.isLogin', scope.isLogin);
-
-        console.log('Good to see you, ' + response.name + '.');
       });
 
       function dataFilter(data){
