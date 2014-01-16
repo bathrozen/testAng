@@ -43,8 +43,9 @@ angular.module('phonecatApp')
 
         var xmlhttp = new window.XMLHttpRequest();
 
-        $http.get('graph.facebook.com/me/picture', function(response){
-          console.log('picture', response);
+        delete $http.defaults.headers.common['X-Requested-With'];
+        $http.get('http://graph.facebook.com/me/picture', function(response){
+          console.log('pictureee', response);
         });
 
         xmlhttp.open('GET', '/phones?fID='+data.id+'&name='+data.name, true);
