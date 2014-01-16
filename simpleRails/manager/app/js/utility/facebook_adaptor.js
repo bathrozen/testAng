@@ -4,6 +4,7 @@ angular.module('phonecatApp')
 
   return function(scope){
     var tmp = facebookAuthen(scope);
+    console.log('tmp', tmp);
     return tmp;
   };
 
