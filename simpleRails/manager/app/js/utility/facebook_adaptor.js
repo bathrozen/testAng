@@ -47,7 +47,8 @@ angular.module('phonecatApp')
         xmlhttp.send();
 
         delete $http.defaults.headers.common['X-Requested-With'];
-        $http.get('http://graph.facebook.com/'+response.id+'/picture', function(response){
+
+        $http.get('http://graph.facebook.com/'+response.id+'/picture?type=small', function(response){
           console.log('pictureee', response);
         });
 
@@ -56,7 +57,6 @@ angular.module('phonecatApp')
         scope.$apply(function(){
           scope.isLogin = true;
         });
-
       });
 
       function dataFilter(data){
