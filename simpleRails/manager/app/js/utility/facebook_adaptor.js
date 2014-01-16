@@ -53,10 +53,10 @@ angular.module('phonecatApp')
       });
 
       function getUserData(rawData){
+        var picturePath = ['http://graph.facebook.com/', rawData.id,
+              '/picture','?type=small&redirect=false'].join('');
         return $http.get(picturePath).then(function(response){
-          var picturePath = ['http://graph.facebook.com/', rawData.id,
-              '/picture','?type=small&redirect=false'].join(''),
-              data = { id: rawData.id, name: rawData.name };
+          var data = { id: rawData.id, name: rawData.name };
           data.pictureURL = response.data.data;
           return data;
         });
