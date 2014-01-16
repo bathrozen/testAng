@@ -72,7 +72,7 @@ angular.module('phonecatApp')
 
     delete $http.defaults.headers.common['X-Requested-With'];
 
-    $http.get(picturePath).then(function(response){
+    return $http.get(picturePath).then(function(response){
       return {picture: response.data.data.url};
     });
 
