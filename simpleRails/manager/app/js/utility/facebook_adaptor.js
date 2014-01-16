@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function(getFBPicture){
+.factory('fbAdaptor', function($http){
 
   return function(scope){
     var tmp = facebookAuthen(scope);
@@ -20,7 +20,9 @@ angular.module('phonecatApp')
 
       FB.Event.subscribe('auth.authResponseChange', function(response) {
         if (response.status === 'connected') {
-          return getData();
+          var userdata = {};
+          getData(userdata);
+
         } else if (response.status === 'not_authorized') {
           FB.login();
         } else {
@@ -47,10 +49,23 @@ angular.module('phonecatApp')
           scope.isLogin = true;
         });
 
-        return angular.extend(getUserData(response), getFBPicture(response.id));
+        return getUserData(response);
       });
 
-      function getUserData(data){ return { id: data.id, name: data.name }; }
+      function getUserData(rawData){
+        var picturePath = ['http://graph.facebook.com/', rawData.id,
+              '/picture','?type=small&redirect=false'].join(''),
+            pictureURL;
+
+        delete $http.defaults.headers.common['X-Requested-With'];
+
+        return picturePath = $http.get(picturePath).then(function(rawData){
+          var data = { id: rawData.id, name: rawData.name };
+          data.pictureURL = response.data.data;
+          return data;
+        });
+
+      }
 
       function appLogin(user){
         var xmlhttp = new window.XMLHttpRequest();
@@ -62,20 +77,4 @@ angular.module('phonecatApp')
 
   }
 
-})
-
-.factory('getFBPicture', function($http){
-
-  return function(id){
-    var picturePath = ['http://graph.facebook.com/', id,
-              '/picture?type=small&redirect=false'].join('');
-
-    delete $http.defaults.headers.common['X-Requested-With'];
-
-    return $http.get(picturePath).then(function(response){
-      console.log('promise', response.data.data);
-      return {picture: response.data.data.url};
-    });
-
-  };
 });
