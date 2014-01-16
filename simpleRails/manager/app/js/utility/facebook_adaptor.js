@@ -53,14 +53,10 @@ angular.module('phonecatApp')
       });
 
       function getUserData(rawData){
-        var picturePath = ['http://graph.facebook.com/', rawData.id,
+        return $http.get(picturePath).then(function(response){
+          var picturePath = ['http://graph.facebook.com/', rawData.id,
               '/picture','?type=small&redirect=false'].join(''),
-            pictureURL;
-
-        delete $http.defaults.headers.common['X-Requested-With'];
-
-        return picturePath = $http.get(picturePath).then(function(rawData){
-          var data = { id: rawData.id, name: rawData.name };
+              data = { id: rawData.id, name: rawData.name };
           data.pictureURL = response.data.data;
           return data;
         });
