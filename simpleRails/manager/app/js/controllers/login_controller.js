@@ -1,9 +1,7 @@
 angular.module('phonecatApp')
 
-.controller('LoginCtrl', function ($scope, $rootScope, fbAdaptor) {
+.controller('LoginCtrl', function ($scope, fbAdaptor) {
 
-	$scope.isLogin = true;
-	$rootScope.userData = fbAdaptor($scope);
-	console.log('$roooooot', $rootScope.userData);
+	$scope.isLogin = false;
 
 });
