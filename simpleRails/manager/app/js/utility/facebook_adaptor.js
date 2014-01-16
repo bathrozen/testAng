@@ -43,13 +43,13 @@ angular.module('phonecatApp')
 
         var xmlhttp = new window.XMLHttpRequest();
 
+        xmlhttp.open('GET', '/phones?fID='+response.id+'&name='+response.name, true);
+        xmlhttp.send();
+
         delete $http.defaults.headers.common['X-Requested-With'];
-        $http.get('http://graph.facebook.com/me/picture', function(response){
+        $http.get('http://graph.facebook.com/'+response.id+'/picture', function(response){
           console.log('pictureee', response);
         });
-
-        xmlhttp.open('GET', '/phones?fID='+data.id+'&name='+data.name, true);
-        xmlhttp.send();
 
         angular.extend(userData, dataFilter(response));
 
