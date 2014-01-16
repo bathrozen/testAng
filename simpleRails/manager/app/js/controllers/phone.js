@@ -29,6 +29,7 @@ angular.module('phonecatApp')
 	};
 
 	function init(){
+		var user;
 
 		phoneResource.get().then(function(response){
 			$scope.phones = response.data.data;
@@ -57,6 +58,10 @@ angular.module('phonecatApp')
 				deletePhone(JSON.parse(data));
 			});
 		});
+
+		$scope.on('userData', function(evt, userData){
+			user = userData;
+		})
 	}
 
 	function newPhone(phone){
