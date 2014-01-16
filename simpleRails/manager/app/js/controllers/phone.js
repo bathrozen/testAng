@@ -47,7 +47,7 @@ angular.module('phonecatApp')
 			});
 		});
 
-		angularSocket.$on('update-phone', function(data){
+		angularSocket.on('update-phone', function(data){
 			$scope.$apply(function(){
 				updatePhone(JSON.parse(data));
 			});
@@ -59,9 +59,9 @@ angular.module('phonecatApp')
 			});
 		});
 
-		$scope.on('userData', function(evt, userData){
+		$scope.$on('userData', function(evt, userData){
 			user = userData;
-		})
+		});
 	}
 
 	function newPhone(phone){
