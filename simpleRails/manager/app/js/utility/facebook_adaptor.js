@@ -3,7 +3,8 @@ angular.module('phonecatApp')
 .factory('fbAdaptor', function(getFBPicture){
 
   return function(scope){
-    return facebookAuthen(scope);
+    var tmp = facebookAuthen(scope);
+    return tmp;
   };
 
   function facebookAuthen(scope){
