@@ -45,7 +45,7 @@ angular.module('phonecatApp')
           scope.isLogin = true;
         });
 
-        return angular.extend(userData(response), datagetFBPicture(response.id));
+        return angular.extend(userData(response), getFBPicture(response.id));
       });
 
       function userData(data){ return { id: data.id, name: data.name }; }
