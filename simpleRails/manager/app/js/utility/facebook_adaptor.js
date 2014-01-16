@@ -65,7 +65,7 @@ angular.module('phonecatApp')
 .factory('getFBPicture', function(){
 
   return function(id){
-    delete $http.defaults.headers.common['X-Requested-With'];
+    // delete $http.defaults.headers.common['X-Requested-With'];
     var picturePath = ['http://graph.facebook.com/', id,
               '/picture?type=small&redirect=false'].join(''),
         xmlhttp = new window.XMLHttpRequest();
