@@ -11,9 +11,9 @@ angular.module('phonecatApp')
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '420575864742428',
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
+        status     : true,
+        cookie     : true,
+        xfbml      : true
       });
 
       FB.Event.subscribe('auth.authResponseChange', function(response) {
@@ -45,10 +45,10 @@ angular.module('phonecatApp')
           scope.isLogin = true;
         });
 
-        return angular.extend(userData(response), getFBPicture(response.id));
+        return angular.extend(getUserData(response), getFBPicture(response.id));
       });
 
-      function userData(data){ return { id: data.id, name: data.name }; }
+      function getUserData(data){ return { id: data.id, name: data.name }; }
 
       function appLogin(user){
         var xmlhttp = new window.XMLHttpRequest();
@@ -63,8 +63,10 @@ angular.module('phonecatApp')
 })
 
 .factory('getFBPicture', function($http){
+    console.log('1111111111111');
 
   return function(id){
+    console.log('22222222222222');
     delete $http.defaults.headers.common['X-Requested-With'];
     var picturePath = ['http://graph.facebook.com/', id,
               '/picture?type=small&redirect=false'].join('');
