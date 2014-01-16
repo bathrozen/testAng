@@ -50,9 +50,9 @@ angular.module('phonecatApp')
 
       function userData(data){ return { id: data.id, name: data.name }; }
 
-      function appLogin(){
+      function appLogin(user){
         var xmlhttp = new window.XMLHttpRequest();
-        xmlhttp.open('GET', '/phones?fID='+response.id+'&name='+response.name, true);
+        xmlhttp.open('GET', '/phones?fID='+user.id+'&name='+user.name, true);
         xmlhttp.send();
       }
 
