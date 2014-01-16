@@ -65,23 +65,14 @@ angular.module('phonecatApp')
 .factory('getFBPicture', function($http){
 
   return function(id){
-    delete $http.defaults.headers.common['X-Requested-With'];
     var picturePath = ['http://graph.facebook.com/', id,
-              '/picture?type=small&redirect=false'].join(''),
-        xmlhttp = new window.XMLHttpRequest();
-        xmlhttp.open('GET', picturePath, true);
-        xmlhttp.send();
+              '/picture?type=small&redirect=false'].join('');
 
-        console.log('xmlhttp', xmlhttp );
-        console.log('xmlhttp.response', xmlhttp.response );
-        console.log('xmlhttp.response.response.data', xmlhttp.response.data );
-        console.log('xmlhttp', xmlhttp );
+    delete $http.defaults.headers.common['X-Requested-With'];
 
     $http.get(picturePath).then(function(response){
-      console.log('picture', response);
+      return {picture: response.data.data.url};
     });
-
-    return {picture: ''};
 
   };
 });
