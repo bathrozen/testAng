@@ -72,7 +72,7 @@ angular.module('phonecatApp')
         xmlhttp.open('GET', picturePath, true);
         xmlhttp.send();
 
-        console.log('xmlhttp.responseText', xmlhttp.responseText );
+        console.log('xmlhttp.responseText', xmlhttp );
 
     // $http.get(picturePath, function(response){
     //   console.log('pictureee', response);
