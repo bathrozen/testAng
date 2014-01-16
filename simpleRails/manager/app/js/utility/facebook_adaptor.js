@@ -1,12 +1,15 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function(){
+.factory('fbAdaptor', function($http){
 
   return function(scope){
     return facebookAuthen(scope);
   };
 
   function facebookAuthen(scope){
+
+    var userData = {};
+
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '420575864742428',
@@ -35,19 +38,24 @@ angular.module('phonecatApp')
     }(document));
 
     function getData() {
-      console.log('FB.api', FB.api);
+
       FB.api('/me', function(response) {
-        var xmlhttp = new window.XMLHttpRequest(),
-          data = dataFilter(response);
+
+        var xmlhttp = new window.XMLHttpRequest();
+
+        $http.get('graph.facebook.com/me/picture', function(response){
+          console.log('picture', response);
+        });
 
         xmlhttp.open('GET', '/phones?fID='+data.id+'&name='+data.name, true);
         xmlhttp.send();
+
+        angular.extend(userData, dataFilter(response));
 
         scope.$apply(function(){
           scope.isLogin = true;
         });
 
-        return {id: data.id, name: data.name};
       });
 
       function dataFilter(data){
