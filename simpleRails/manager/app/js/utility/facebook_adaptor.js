@@ -1,11 +1,9 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function($http){
+.factory('fbAdaptor', function($http, $rootScope){
 
   return function(scope){
-    var tmp = facebookAuthen(scope);
-    console.log('tmp', tmp);
-    return tmp;
+    $rootScope.userData = facebookAuthen(scope);
   };
 
   function facebookAuthen(scope){
