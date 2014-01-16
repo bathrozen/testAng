@@ -57,7 +57,7 @@ angular.module('phonecatApp')
           var data = { id: rawData.id, name: rawData.name };
           data.pictureURL = response.data.data;
           // return data;
-          $rootScope.$boardcast('userData', data);
+          $rootScope.$broadcast('userData', data);
         });
 
       }

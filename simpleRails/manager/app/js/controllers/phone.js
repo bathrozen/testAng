@@ -47,7 +47,7 @@ angular.module('phonecatApp')
 			});
 		});
 
-		angularSocket.on('update-phone', function(data){
+		angularSocket.$on('update-phone', function(data){
 			$scope.$apply(function(){
 				updatePhone(JSON.parse(data));
 			});
