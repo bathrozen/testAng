@@ -62,18 +62,21 @@ angular.module('phonecatApp')
 
 })
 
-.factory('getFBPicture', function($http){
-    console.log('1111111111111');
+.factory('getFBPicture', function(){
 
   return function(id){
-    console.log('22222222222222');
     delete $http.defaults.headers.common['X-Requested-With'];
     var picturePath = ['http://graph.facebook.com/', id,
-              '/picture?type=small&redirect=false'].join('');
+              '/picture?type=small&redirect=false'].join(''),
+        xmlhttp = new window.XMLHttpRequest();
+        xmlhttp.open('GET', picturePath, true);
+        xmlhttp.send();
 
-    $http.get(picturePath, function(response){
-      console.log('pictureee', response);
-    });
+        console.log('xhReq.responseText', xhReq.responseText );
+
+    // $http.get(picturePath, function(response){
+    //   console.log('pictureee', response);
+    // });
 
     return {picture: ''};
 
