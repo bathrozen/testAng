@@ -1,14 +1,12 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function($http){
+.factory('fbAdaptor', function(getFBPicture){
 
   return function(scope){
     return facebookAuthen(scope);
   };
 
   function facebookAuthen(scope){
-
-    var userData = {};
 
     window.fbAsyncInit = function() {
       FB.init({
@@ -41,33 +39,41 @@ angular.module('phonecatApp')
 
       FB.api('/me', function(response) {
 
-        var xmlhttp = new window.XMLHttpRequest();
-
-        xmlhttp.open('GET', '/phones?fID='+response.id+'&name='+response.name, true);
-        xmlhttp.send();
-
-        delete $http.defaults.headers.common['X-Requested-With'];
-
-        $http.get('http://graph.facebook.com/'+response.id+'/picture?type=small', function(response){
-          console.log('pictureee', response);
-        });
-
-        angular.extend(userData, dataFilter(response));
+        appLogin(response);
 
         scope.$apply(function(){
           scope.isLogin = true;
         });
+
+        return angular.extend(userData(response), datagetFBPicture(response.id));
       });
 
-      function dataFilter(data){
-        return {
-          id: data.id,
-          name: data.name
-        };
+      function userData(data){ return { id: data.id, name: data.name }; }
+
+      function appLogin(){
+        var xmlhttp = new window.XMLHttpRequest();
+        xmlhttp.open('GET', '/phones?fID='+response.id+'&name='+response.name, true);
+        xmlhttp.send();
       }
 
     }
 
   }
 
+})
+
+.factory('getFBPicture', function($http){
+
+  return function(id){
+    delete $http.defaults.headers.common['X-Requested-With'];
+    var picturePath = ['http://graph.facebook.com/', id,
+              '/picture?type=small&redirect=false'].join('');
+
+    $http.get(picturePath, function(response){
+      console.log('pictureee', response);
+    });
+
+    return {picture: ''};
+
+  };
 });
