@@ -56,8 +56,7 @@ module.exports = function(grunt) {
           {src: ['.build/script.js'], dest: '../public/script.js'},
           {src: ['app/index.html'], dest: '../public_2/index.html'},
           {src: ['.build/manager.css'], dest: '../public/manager.css'},
-          {src: ['app/auth.html'], dest: '../public/auth.html'},
-          {src: ['app/js/lib/facebook.js'], dest: '../public/facebook.js'}
+          {src: ['app/auth.html'], dest: '../public/auth.html'}
         ]
       }
     },karma: {

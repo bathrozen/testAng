@@ -23,9 +23,6 @@ class ApplicationController < ActionController::Base
         data = {:name => params['name'], :fID => params['fID']}
         @user = User.create_from_fbData(data);
       end
-      # after_authen
-    else
-      render :file => File.join(Rails.root, 'public', 'auth.html'), :layout => nil
     end
   end
 
