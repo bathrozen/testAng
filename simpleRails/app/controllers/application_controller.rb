@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
         p 'create_by_fbData'
         data = {:name => params['name'], :fID => params['fID']}
         user = User.create_from_fbData(data);
-        sign_in user
       end
+      sign_in(user)
     end
   end
 
