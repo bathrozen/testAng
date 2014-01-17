@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
 
   before_filter :facebook_authen unless :signed_in?
 
-  # skip_before_filter :facebook_authen if sign_in?
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
