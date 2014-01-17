@@ -19,8 +19,4 @@ class ApplicationController < ActionController::Base
     sign_in(user)
   end
 
-  def is_login?
-    signed_in?
-  end
-
 end
