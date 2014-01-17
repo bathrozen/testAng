@@ -38,6 +38,10 @@ module Api
     end
 
     def create
+      p 'Userrrrrrrrrrrrrrrrrrrrrrrr'
+      p @user
+      newPhone = params['phone'];
+      newPhone[:user_id] = @user
       persistedPhone = Phone.addPhone(params['phone'])
       phone = attrFilter(persistedPhone, params['sessionID'])
       @redis.publish('new-phone', phone.to_json)
