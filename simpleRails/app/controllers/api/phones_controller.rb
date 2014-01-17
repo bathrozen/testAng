@@ -38,12 +38,7 @@ module Api
     end
 
     def create
-      p 'Userrrrrrrrrrrrrrrrrrrrrrrr'
-      p current_user
-      p 'endddddddddddddddd'
-      newPhone = params['phone'];
-      newPhone[:user_id] = @user
-      persistedPhone = Phone.addPhone(params['phone'])
+      persistedPhone = Phone.addPhone(params['phone'], current_user)
       phone = attrFilter(persistedPhone, params['sessionID'])
       @redis.publish('new-phone', phone.to_json)
       render :json => {:status => 'success', :data => phone}
@@ -60,7 +55,11 @@ module Api
 private
 
     def attrFilter(persistence, sessionID)
-       {:id => persistence['id'], :name => persistence['name'], :sessionID => sessionID}
+       {:id => persistence['id'],
+        :name => persistence['name'],
+        :sessionID => sessionID}
+
+        need Usecase::Phone for return data and redis data
     end
 
   end
