@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :facebook_authen
 
+  cattr_accessor :user
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -14,7 +16,7 @@ class ApplicationController < ActionController::Base
       else
         p 'create_by_fbData'
         data = {:name => params['name'], :fID => params['fID']}
-        @user = User.create_from_fbData(data);
+        user = User.create_from_fbData(data);
       end
     end
   end
