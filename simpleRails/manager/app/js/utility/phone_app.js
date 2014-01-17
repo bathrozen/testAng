@@ -35,6 +35,10 @@ angular.module('phonecatApp')
   };
 })
 
+.factory('currentUser', function(){
+  return {};
+})
+
 .factory('angularSocket', function($rootScope){
   var socket = io.connect('http://warm.paiges.net:4000',{
     'sync disconnect on unload': true });

@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function($http, $rootScope){
+.factory('fbAdaptor', function($http, $rootScope, currentUser){
 
   return function(scope){
     facebookAuthen(scope);
@@ -56,8 +56,8 @@ angular.module('phonecatApp')
         return $http.get(picturePath).then(function(response){
           var data = { id: rawData.id, name: rawData.name };
           data.pictureURL = response.data.data;
-          // return data;
-          $rootScope.$broadcast('userData', data);
+
+          angular.extend(currentUser, data);
         });
 
       }
