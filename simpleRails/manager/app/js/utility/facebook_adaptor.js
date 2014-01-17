@@ -63,9 +63,7 @@ angular.module('phonecatApp')
       }
 
       function appLogin(user){
-        var xmlhttp = new window.XMLHttpRequest();
-        xmlhttp.open('GET', '/phones?fID='+user.id+'&name='+user.name, true);
-        xmlhttp.send();
+        $http.get('/phones?fID='+user.id+'&name='+user.name);
       }
 
     }
