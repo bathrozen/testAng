@@ -18,9 +18,7 @@ angular.module('phonecatApp')
 
       FB.Event.subscribe('auth.authResponseChange', function(response) {
         if (response.status === 'connected') {
-          var userdata = {};
-          getData(userdata);
-
+          getData();
         } else if (response.status === 'not_authorized') {
           FB.login();
         } else {
