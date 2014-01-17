@@ -40,6 +40,7 @@ module Api
     def create
       p 'Userrrrrrrrrrrrrrrrrrrrrrrr'
       p current_user
+      p 'endddddddddddddddd'
       newPhone = params['phone'];
       newPhone[:user_id] = @user
       persistedPhone = Phone.addPhone(params['phone'])
