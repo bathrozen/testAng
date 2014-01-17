@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_filter :facebook_authen unless signed_in?
+  before_filter :facebook_authen unless is_login?
 
   # skip_before_filter :facebook_authen if sign_in?
 
@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     end
 
     sign_in(user)
+  end
+
+  def is_login?
+    signed_in?
   end
 
 end
