@@ -16,9 +16,13 @@ class ApplicationController < ActionController::Base
       else
         p 'create_by_fbData'
         data = {:name => params['name'], :fID => params['fID']}
-        user = User.create_from_fbData(data);
+        @user = User.create_from_fbData(data);
       end
     end
+  end
+
+  def user
+    @user
   end
 
 end
