@@ -27,15 +27,18 @@ module UseCase
       }.to_json
     end
 
-    def self.all(user)
+    def self.all
       p 'heyyyyyyyyyyyyyyyyy'
       phones = []
-      PersistentPhone.all.each do |phone|
+      PersistentPhone.select('id', 'name').all.each do |phone|
         p 'phoneee'
         p phone
+        phones << {:facebookID => phone.facebookID, :phone => @phone}
       end
-
+      phones
     end
+
+
 
   end
 end
