@@ -28,6 +28,7 @@ module UseCase
     end
 
     def self.all(user)
+      p 'heyyyyyyyyyyyyyyyyy'
       phones = []
       PersistentPhone.all.each do |phone|
         p 'phoneee'
