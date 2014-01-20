@@ -42,7 +42,6 @@ angular.module('phonecatApp')
 
 		angularSocket.on('new-phone', function(data){
 			$scope.$apply(function(){
-				console.log('json', JSON.parse(data));
 				newPhone(JSON.parse(data));
 			});
 		});
@@ -61,7 +60,7 @@ angular.module('phonecatApp')
 	}
 
 	function newPhone(phone){
-		console.log('phone');
+		console.log('phone', phone);
 		$scope.phones.push(phone);
 	}
 
