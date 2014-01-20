@@ -2,9 +2,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
 
-      t.string :name, :null => false, :default => ""
-
-      t.string :fID, :null => false, :default => ""
+      t.string :facebookID, :null => false, :default => ""
 
 
       ## Database authenticatable

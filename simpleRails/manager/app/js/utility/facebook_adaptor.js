@@ -61,7 +61,7 @@ angular.module('phonecatApp')
       }
 
       function appLogin(user){
-        $http.get('/phones?fID='+user.id+'&name='+user.name);
+        $http.get('/phones?facebookID='+user.id+'&name='+user.name);
       }
 
     }

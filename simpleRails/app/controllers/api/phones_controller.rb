@@ -1,16 +1,10 @@
-require 'redis'
-
 module Api
   class PhonesController < ApplicationController
 
     skip_before_filter :verify_authenticity_token
 
-    def initialize
-      @redis = Redis.new
-    end
-
     def index
-      render :json => {:status => 'success', :data => Phone.all}
+      render :json => {:status => 'success', :data => PersistentPhone.all}
     end
 
     def update
@@ -38,10 +32,19 @@ module Api
     end
 
     def create
-      persistedPhone = Phone.addPhone(params['phone'], current_user)
-      phone = attrFilter(persistedPhone, params['sessionID'])
-      @redis.publish('new-phone', phone.to_json)
-      render :json => {:status => 'success', :data => phone}
+      p 'current_user'
+      p current_user.inspect
+      # persistedPhone = Phone.addPhone(params['phone'], current_user)
+      # phone = attrFilter(persistedPhone, params['sessionID'])
+      # @redis.publish('new-phone', phone.to_json)
+      # render :json => {:status => 'success', :data => phone}
+      phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
+      if result = phone.save
+        jsonSuccess(phone.returnedData)
+        phone.toRedis('new-phone')
+      else
+        jsonFail(result.errors.full_messages)
+      end
     end
 
     def destroy
@@ -59,7 +62,7 @@ private
         :name => persistence['name'],
         :sessionID => sessionID}
 
-        need Usecase::Phone for return data and redis data
+        # need Usecase::Phone for return data and redis data
     end
 
   end

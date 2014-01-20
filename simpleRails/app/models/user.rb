@@ -6,15 +6,14 @@ class User < ActiveRecord::Base
 
   has_many :phones, :dependent => :destroy
 
-  def self.create_from_fbData(fbData)
+  def self.create_from_fbData(facebookData)
 
     User.create!(
       {
         :email => Digest::MD5.hexdigest(Time.new.to_s)+'@abc.kom',
         :password => 'test123test',
         :password_confirmation => 'test123test',
-        :fID => fbData[:fID],
-        :name => fbData[:name]
+        :facebookID => facebookData[:facebookID]
       }
     )
   end
