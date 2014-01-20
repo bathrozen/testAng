@@ -4,7 +4,7 @@ module Api
     skip_before_filter :verify_authenticity_token
 
     def index
-      render :json => {:status => 'success', :data => PersistentPhone.all}
+      render :json => {:status => 'success', :data => UseCase::Phone.all}
     end
 
     def update
