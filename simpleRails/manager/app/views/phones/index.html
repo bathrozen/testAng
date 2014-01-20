@@ -9,6 +9,7 @@
           <input type="button" value="edit" class="edit-btn btn btn-success"/>
           <input type="button" value="delete" class="remove-btn btn btn-success"/>
           <div class="toggle-area phone-edit" edit-state="editState">
+            <span class="image-field" ng-hide="editState">{{phoneData.facebookID}}</span>
             <span class="content-field" ng-hide="editState">{{phoneData.phone.name}}</span>
             <input class="input-field" ng-show="editState" ng-model="phoneData.phone.name">
           </div>
