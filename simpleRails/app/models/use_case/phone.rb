@@ -22,9 +22,6 @@ module UseCase
   	end
 
     def returnedData
-      # p 'User'
-      # p @user.inspect
-      # p 'end'
       { :facebookID => @user[:facebookID],
         :phone => @phoneData
       }.to_json
