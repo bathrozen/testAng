@@ -27,5 +27,14 @@ module UseCase
       }.to_json
     end
 
+    def self.all(user)
+      phones = []
+      PersistentPhone.all.each do |phone|
+        p 'phoneee'
+        p phone
+      end
+
+    end
+
   end
 end
