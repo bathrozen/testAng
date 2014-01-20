@@ -32,12 +32,6 @@ module Api
     end
 
     def create
-      p 'current_user'
-      p current_user.inspect
-      # persistedPhone = Phone.addPhone(params['phone'], current_user)
-      # phone = attrFilter(persistedPhone, params['sessionID'])
-      # @redis.publish('new-phone', phone.to_json)
-      # render :json => {:status => 'success', :data => phone}
       phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
       if result = phone.save
         jsonSuccess(phone.returnedData)
