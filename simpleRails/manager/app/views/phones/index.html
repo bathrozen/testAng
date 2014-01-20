@@ -1,7 +1,7 @@
 <div ng-controller="PhoneIndexCtrl">
   <div>
     <ul class="phone-list">
-      <li ng-repeat="phoneData in phones | search:query | orderBy:orderProp" class="each-phone" >
+      <li ng-repeat="phone in phones | search:query | orderBy:orderProp" class="each-phone" >
         <div toggle-phone
           edit-content phone="phone" remove-phone="removePhone"
           get-detail="getDetail" edit-phone="editPhone" edit-state="editState">
@@ -9,9 +9,8 @@
           <input type="button" value="edit" class="edit-btn btn btn-success"/>
           <input type="button" value="delete" class="remove-btn btn btn-success"/>
           <div class="toggle-area phone-edit" edit-state="editState">
-            <span class="image-field" ng-hide="editState">{{phoneData.facebookID}}</span>
-            <span class="content-field" ng-hide="editState">{{phoneData.phone.name}}</span>
-            <input class="input-field" ng-show="editState" ng-model="phoneData.phone.name">
+            <span class="content-field" ng-hide="editState">{{phone}}</span>
+            <input class="input-field" ng-show="editState" ng-model="phone.name">
           </div>
         </div>
       </li>
