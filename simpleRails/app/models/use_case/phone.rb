@@ -25,7 +25,7 @@ module UseCase
 
     def returnedData
       { :facebookID => @user[:facebookID],
-        :phone => @phoneData
+        :phone => @phone
       }.to_json
     end
 
