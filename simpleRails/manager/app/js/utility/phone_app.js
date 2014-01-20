@@ -29,6 +29,16 @@ angular.module('phonecatApp')
   };
 })
 
+.factory('indexOfByFacebookID', function(){
+  return function(value, array){
+    if (!value.facebookID || array.constructor.name !== 'Array') { return; }
+    return array.reduce(function(memo, current, idx){
+      if (current.facebookID == value.facebookID) { memo.push(idx); }
+      return memo;
+    },[]);
+  };
+})
+
 .factory('isValid', function(){
   return function(text){
     return !text ? null : text;
