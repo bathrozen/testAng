@@ -18,7 +18,7 @@ module UseCase
 
   	def redisData
   		{ :facebookID => @user[:facebookID],
-  		  :phone => @phoneData,
+  		  :phone => @phone,
   		  :sessionID => @sessionID
   		}.to_json
   	end
