@@ -11,6 +11,7 @@ module UseCase
   	end
 
   	def toRedis(message)
+      p redisData
   		@redis.publish(message, redisData)
   	end
 
