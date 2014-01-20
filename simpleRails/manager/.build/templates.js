@@ -4,7 +4,7 @@ angular.module("phonecatApp").run(["$templateCache", function($templateCache) {
     "<div ng-controller=\"PhoneIndexCtrl\">\n" +
     "  <div>\n" +
     "    <ul class=\"phone-list\">\n" +
-    "      <li ng-repeat=\"phone in phones | search:query | orderBy:orderProp\" class=\"each-phone\" >\n" +
+    "      <li ng-repeat=\"phoneData in phones | search:query | orderBy:orderProp\" class=\"each-phone\" >\n" +
     "        <div toggle-phone\n" +
     "          edit-content phone=\"phone\" remove-phone=\"removePhone\"\n" +
     "          get-detail=\"getDetail\" edit-phone=\"editPhone\" edit-state=\"editState\">\n" +
@@ -12,8 +12,8 @@ angular.module("phonecatApp").run(["$templateCache", function($templateCache) {
     "          <input type=\"button\" value=\"edit\" class=\"edit-btn btn btn-success\"/>\n" +
     "          <input type=\"button\" value=\"delete\" class=\"remove-btn btn btn-success\"/>\n" +
     "          <div class=\"toggle-area phone-edit\" edit-state=\"editState\">\n" +
-    "            <span class=\"content-field\" ng-hide=\"editState\">{{phone.name}}</span>\n" +
-    "            <input class=\"input-field\" ng-show=\"editState\" ng-model=\"phone.name\">\n" +
+    "            <span class=\"content-field\" ng-hide=\"editState\">{{phoneData.phone.name}}</span>\n" +
+    "            <input class=\"input-field\" ng-show=\"editState\" ng-model=\"phoneData.phone.name\">\n" +
     "          </div>\n" +
     "        </div>\n" +
     "      </li>\n" +
