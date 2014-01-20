@@ -30,7 +30,7 @@ module UseCase
     def self.all
       p 'heyyyyyyyyyyyyyyyyy'
       phones = []
-      PersistentPhone.select('id', 'name').all.each do |phone|
+      PersistentPhone.select('id', 'name').all.to_a.each do |phone|
         p 'phoneee'
         p phone
         phones << {:facebookID => phone.facebookID, :phone => @phone}
