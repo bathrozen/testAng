@@ -60,6 +60,7 @@ angular.module('phonecatApp')
 	}
 
 	function newPhone(phone){
+		console.log('phone');
 		$scope.phones.push(phone);
 	}
 
