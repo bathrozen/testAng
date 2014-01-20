@@ -85,7 +85,6 @@ angular.module('phonecatApp')
 			if (response.data.status === 'fail') {
 				// failllll someone do something
 			} else {
-				console.log('newPhone', response.data.data);
 				$rootScope.$broadcast('new-phone', response.data.data);
 			}
 		});

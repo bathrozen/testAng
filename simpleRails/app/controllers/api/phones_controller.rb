@@ -55,8 +55,6 @@ private
        {:id => persistence['id'],
         :name => persistence['name'],
         :sessionID => sessionID}
-
-        # need Usecase::Phone for return data and redis data
     end
 
   end
