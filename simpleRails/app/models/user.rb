@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   has_many :phones, :dependent => :destroy
 
   def self.create_from_fbData(facebookData)
-
     User.create!(
       {
         :email => Digest::MD5.hexdigest(Time.new.to_s)+'@abc.kom',
@@ -16,6 +15,10 @@ class User < ActiveRecord::Base
         :facebookID => facebookData[:facebookID]
       }
     )
+  end
+
+  def self.find_facebookID_by_id(id)
+    self.fing_by_id(id)[:facebookID]
   end
 
 end
