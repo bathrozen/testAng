@@ -28,17 +28,16 @@ module UseCase
   	end
 
     def returnedData
-      { :facebookID => @user[:facebookID],
-        :phone => phone_id_and_name
-      }
+      phone = phone_id_and_name
+      phone[:facebookID] = @user[:facebookID]
+      phone
     end
 
     def self.all
       phones = []
       PersistentPhone.select('id', 'name', 'user_id').to_a.each do |phone|
         facebookID = User.find_facebookID_by_id(phone[:user_id])
-        phones << {:facebookID => facebookID,
-          :phone => {:id => phone[:id], :name => phone[:name]}}
+        phones << {:id => phone[:id], :name => phone[:name], :facebookID => facebookID}
       end
       phones
     end
