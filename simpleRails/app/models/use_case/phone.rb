@@ -38,7 +38,7 @@ module UseCase
     end
 
     def phone_id_and_name
-      {:id => @persistedPhone[:id], :name => @persistedPhone}
+      {:id => @persistedPhone[:id], :name => @persistedPhone[:name]}
     end
 
   end
