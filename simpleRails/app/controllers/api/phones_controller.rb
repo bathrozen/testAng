@@ -8,8 +8,6 @@ module Api
     end
 
     def update
-      p 'paramsssssssssssssssss'
-      p params
       phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
       if result = phone.update
         jsonSuccess(phone.returnedData)
