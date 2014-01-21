@@ -30,10 +30,9 @@ module UseCase
     def self.all
       p 'heyyyyyyyyyyyyyyyyy'
       phones = []
-      PersistentPhone.select('id', 'name').to_a.each do |phone|
-        p 'phoneee'
-        p phone
+      PersistentPhone.select('id', 'name', 'user_id').to_a.each do |phone|
         facebookID = User.find_by_id(phone[:user_id])
+        phone.delete(:user_id)
         phones << {:facebookID => facebookID, :phone => phone}
       end
       phones
