@@ -60,6 +60,7 @@ angular.module('phonecatApp')
 	}
 
 	function newPhone(phone){
+		console.log('new-phone', phone);
 		$scope.phones.push(phone);
 	}
 
@@ -68,7 +69,7 @@ angular.module('phonecatApp')
 		$scope.phones[target] = phone;
 	}
 
-	function deletePhone(phoneData){
+	function deletePhone(phone){
 		var target = indexOfByID(phoneData.phone, $scope.phones)[0];
 		$scope.phones.splice(target, 1);
 	}
