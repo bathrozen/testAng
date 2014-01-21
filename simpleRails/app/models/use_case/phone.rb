@@ -31,8 +31,8 @@ module UseCase
       phones = []
       PersistentPhone.select('id', 'name', 'user_id').to_a.each do |phone|
         facebookID = User.find_by_id(phone[:user_id])[:facebookID]
-        phone.delete :user_id
-        phones << {:facebookID => facebookID, :phone => phone}
+        phones << {:facebookID => facebookID,
+          :phone => {:id => phone[:id], :name => phone[:name]}}
       end
       phones
     end
