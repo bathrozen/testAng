@@ -11,6 +11,8 @@ module UseCase
   	end
 
     def update
+      p 'phoneeeee'
+      p @phone
       @persistedPhone = PersistentPhone.find_by_id(@phone[:id])
       @persistedPhone[:name] = @phone[:name]
       @persistedPhone.save
