@@ -17,10 +17,6 @@ module UseCase
     end
 
   	def toRedis(message)
-      p "REDISSSSSSSSSSSSSSSSSS"
-      p message
-      p 'DATAAAAAAAAAAAAAAA'
-      p redisData
   		@redis.publish(message, redisData)
   	end
 
@@ -48,12 +44,10 @@ module UseCase
       @persistedPhone.delete
     end
 
-    def phone_id_and_name
-      {:id => @persistedPhone[:id], :name => @persistedPhone[:name]}
-    end
-
     def phone_format
-      {:id => @persistedPhone[:id], :name => @persistedPhone[:name], :facebookID => @user[:facebookID]}
+      {:id => @persistedPhone[:id],
+        :name => @persistedPhone[:name],
+        :facebookID => @user[:facebookID]}
     end
 
   end
