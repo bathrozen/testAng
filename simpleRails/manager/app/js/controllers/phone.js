@@ -47,12 +47,14 @@ angular.module('phonecatApp')
 		});
 
 		angularSocket.on('update-phone', function(data){
+			console.log('update-phone', data);
 			$scope.$apply(function(){
 				updatePhone(JSON.parse(data));
 			});
 		});
 
 		angularSocket.on('delete-phone', function(data){
+			console.log('delete-phone', data);
 			$scope.$apply(function(){
 				deletePhone(JSON.parse(data));
 			});

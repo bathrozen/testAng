@@ -21,16 +21,13 @@ module UseCase
   	end
 
   	def redisData
-  		{ :facebookID => @user[:facebookID],
-  		  :phone => phone_id_and_name,
+  		{ :phone => phone_format,
   		  :sessionID => @sessionID
   		}.to_json
   	end
 
     def returnedData
-      phone = phone_id_and_name
-      phone[:facebookID] = @user[:facebookID]
-      phone
+      phone_format
     end
 
     def self.all
@@ -42,8 +39,17 @@ module UseCase
       phones
     end
 
+    def delete(phone, sessionID)
+      @persistedPhone = PersistentPhone.find_by_id(@phone[:id])
+      @persistedPhone.delete
+    end
+
     def phone_id_and_name
       {:id => @persistedPhone[:id], :name => @persistedPhone[:name]}
+    end
+
+    def phone_format
+      {:id => @persistedPhone[:id], :name => @persistedPhone[:name], :facebookID => @user[:facebookID]}
     end
 
   end
