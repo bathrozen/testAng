@@ -63,14 +63,14 @@ angular.module('phonecatApp')
 		$scope.phones.push(phone);
 	}
 
-	function updatePhone(phone){
-		console.log('update phone', phone);
-		var target = indexOfByID(phone, $scope.phones)[0];
+	function updatePhone(phoneData){
+		console.log('update phone', phoneData);
+		var target = indexOfByID(phoneData.phone, $scope.phones)[0];
 		$scope.phones[target] = phone;
 	}
 
-	function deletePhone(phone){
-		var target = indexOfByID(phone, $scope.phones)[0];
+	function deletePhone(phoneData){
+		var target = indexOfByID(phoneData.phone, $scope.phones)[0];
 			$scope.phones.splice(target, 1);
 	}
 
