@@ -30,8 +30,6 @@ module UseCase
     def returnedData
       phone = phone_id_and_name
       phone[:facebookID] = @user[:facebookID]
-      p '@@@@@@@@@@@@'
-      p phone
       phone
     end
 
@@ -45,8 +43,6 @@ module UseCase
     end
 
     def phone_id_and_name
-      p '@@@@@@@@@@@@@@'
-      p @persistedPhone
       {:id => @persistedPhone[:id], :name => @persistedPhone[:name]}
     end
 
