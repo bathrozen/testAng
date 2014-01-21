@@ -8,15 +8,23 @@ module Api
     end
 
     def update
-      persistedPhone = Phone.find_by_id(params[:id])
-      persistedPhone['name'] = params['phone']['name']
-      if result = persistedPhone.save
-        phone = attrFilter(persistedPhone, params['sessionID'])
-        @redis.publish('update-phone', phone.to_json)
-        render :json => {:status => 'success', :data => phone}
+      phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
+      if result = phone.update
+        jsonSuccess(phone.returnedData)
+        phone.toRedis('edit-phone')
       else
-        render :json => {:status => 'fail', :error => result.errors}
+        jsonFail(result.errors.full_messages)
       end
+
+      # persistedPhone = Phone.find_by_id(params[:id])
+      # persistedPhone['name'] = params['phone']['name']
+      # if result = persistedPhone.save
+      #   phone = attrFilter(persistedPhone, params['sessionID'])
+      #   @redis.publish('update-phone', phone.to_json)
+      #   render :json => {:status => 'success', :data => phone}
+      # else
+      #   render :json => {:status => 'fail', :error => result.errors}
+      # end
     end
 
     def show
@@ -33,7 +41,8 @@ module Api
 
     def create
       phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
-      if result = phone.save
+
+      if result = phone.create
         jsonSuccess(phone.returnedData)
         phone.toRedis('new-phone')
       else

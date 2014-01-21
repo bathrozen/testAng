@@ -6,9 +6,15 @@ module UseCase
   		@phone, @user , @sessionID = phone, user, sessionID
   	end
 
-  	def save
+  	def create
   		@persistedPhone = PersistentPhone.create!(:name => @phone[:name], :user => @user)
   	end
+
+    def update
+      @persistedPhone = PersistentPhone.find_by_id(@phone[:id])
+      @persistedPhone[:name] = @phone[:name]
+      @persistedPhone.save
+    end
 
   	def toRedis(message)
   		@redis.publish(message, redisData)
