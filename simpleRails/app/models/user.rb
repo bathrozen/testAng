@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_facebookID_by_id(id)
-    self.fing_by_id(id)[:facebookID]
+    self.find_by_id(id)[:facebookID]
   end
 
 end
