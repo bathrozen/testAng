@@ -8,7 +8,7 @@ module Api
     end
 
     def update
-      phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
+      phone = UseCase::Phone.new(params[:phone][:phone], current_user, params[:sessionID])
       if result = phone.update
         jsonSuccess(phone.returnedData)
         phone.toRedis('edit-phone')
