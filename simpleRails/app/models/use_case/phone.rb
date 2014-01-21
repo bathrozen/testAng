@@ -30,6 +30,8 @@ module UseCase
     def returnedData
       phone = phone_id_and_name
       phone[:facebookID] = @user[:facebookID]
+      p '@@@@@@@@@@@@'
+      p phone
       phone
     end
 
