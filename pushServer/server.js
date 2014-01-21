@@ -37,7 +37,7 @@ function broadcast(message, data){
     delete parsed.sessionID;
   Object.keys(sockets).forEach(function(key){
     if (sessionID === sockets[key].id) { return; }
-    sockets[key].emit(message, data);
+    sockets[key].emit(message, data.phone);
   });
 }
 
