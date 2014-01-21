@@ -1,7 +1,7 @@
 class PersistentPhone < ActiveRecord::Base
     has_many :details, :dependent => :destroy
     # has_one :facebookID, :through => :user
-    has_many :facebookID, :through => :user, :source => :user
+    has_many :facebookID, :through => :user, :source => :phone
     belongs_to :user
   self.table_name = 'phones'
 
