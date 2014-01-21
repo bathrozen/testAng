@@ -7,7 +7,7 @@ module UseCase
   	end
 
   	def save
-  		PersistentPhone.create!(:name => @phone[:name], :user => @user)
+  		@persistedPhone = PersistentPhone.create!(:name => @phone[:name], :user => @user)
   	end
 
   	def toRedis(message)
@@ -16,14 +16,14 @@ module UseCase
 
   	def redisData
   		{ :facebookID => @user[:facebookID],
-  		  :phone => @phone,
+  		  :phone => phone_id_and_name,
   		  :sessionID => @sessionID
   		}.to_json
   	end
 
     def returnedData
       { :facebookID => @user[:facebookID],
-        :phone => @phone
+        :phone => phone_id_and_name
       }.to_json
     end
 
@@ -35,6 +35,10 @@ module UseCase
           :phone => {:id => phone[:id], :name => phone[:name]}}
       end
       phones
+    end
+
+    def phone_id_and_name
+      {:id => @persistedPhone[:id], :name => @persistedPhone}
     end
 
   end
