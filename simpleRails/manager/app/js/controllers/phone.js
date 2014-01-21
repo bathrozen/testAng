@@ -70,7 +70,7 @@ angular.module('phonecatApp')
 
 	function deletePhone(phoneData){
 		var target = indexOfByID(phoneData.phone, $scope.phones)[0];
-			$scope.phones.splice(target, 1);
+		$scope.phones.splice(target, 1);
 	}
 
 })

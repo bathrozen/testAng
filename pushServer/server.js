@@ -32,9 +32,7 @@ redisClient.on("message", function (message, data) {
 function broadcast(message, data){
   var parsed = JSON.parse(data),
     sessionID = parsed.sessionID;
-    console.log('@@@@@@@@@@@@');
-    console.log('message', data);
-    delete parsed.sessionID;
+  delete parsed.sessionID;
   Object.keys(sockets).forEach(function(key){
     if (sessionID === sockets[key].id) { return; }
     sockets[key].emit(message, data.phone);
