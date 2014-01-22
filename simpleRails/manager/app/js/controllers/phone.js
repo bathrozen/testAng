@@ -54,24 +54,22 @@ angular.module('phonecatApp')
 
 		angularSocket.on('delete-phone', function(data){
 			$scope.$apply(function(){
-				deletePhone(JSON.parse(data).phone);
+				deletePhone(JSON.parse(data));
 			});
 		});
 	}
 
 	function newPhone(phone){
-		console.log('new-phone', phone);
 		$scope.phones.push(phone);
 	}
 
 	function updatePhone(phone){
-		console.log('update-phone', phone);
 		var target = indexOfByID(phone, $scope.phones)[0];
 		$scope.phones[target] = phone;
 	}
 
-	function deletePhone(phone){
-		var target = indexOfByID(phoneData.phone, $scope.phones)[0];
+	function deletePhone(id){
+		var target = indexOfByID(id, $scope.phones)[0];
 		$scope.phones.splice(target, 1);
 	}
 

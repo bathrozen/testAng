@@ -40,21 +40,18 @@ module Api
     end
 
     def destroy
-      phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
+      phone = UseCase::Phone.delete(params[:id], params[:sessionID])
       if result = phone.delete
-        jsonSuccess(phone.returnedData)
-        phone.toRedis('delete-phone')
+        jsonSuccess(result)
+        @redis.publish('delete-phone', {:id => params[:id]}.to_json)
       else
         jsonFail(result.errors.full_messages)
       end
-    end
-
-private
-
-    def attrFilter(persistence, sessionID)
-       {:id => persistence['id'],
-        :name => persistence['name'],
-        :sessionID => sessionID}
+      # persistedPhone = Phone.find_by_id(params[:id])
+      # phone = attrFilter(persistedPhone, params['sessionID'])
+      # @redis.publish('delete-phone', phone.to_json)
+      # persistedPhone.destroy
+      # render :json => {:status => 'success', :data => phone}
     end
 
   end
