@@ -16,6 +16,7 @@ angular.module('phonecatApp')
 
 	$scope.removePhone = function(phone){
 		phoneResource.delete(phone).then(function(response){
+			$rootScope.$broadcast('delete-phone', response.data.data);
 			if (response.data.status === 'fail') {
 				// failllll someone do something
 			} else {
@@ -51,7 +52,6 @@ angular.module('phonecatApp')
 			$scope.$apply(function(){
 				updatePhone(JSON.parse(data).phone);
 			});
-			$rootScope.$broadcast('delete-phone', id);
 		});
 
 		angularSocket.on('delete-phone', function(data){
