@@ -31,7 +31,9 @@ angular.module('phonecatApp')
 		parsed = JSON.parse(data);
 		if ($stateParams.id == parsed.id){
 			console.log('222');
-			$scope.details = [{snippet: 'phone has been deleted'}];
+			$scope.$apply(function(){
+				$scope.details = [{snippet: 'phone has been deleted'}];
+			});
 		}
 		$scope.isPhoneDeleted = true;
 	});
