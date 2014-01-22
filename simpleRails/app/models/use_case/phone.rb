@@ -8,6 +8,8 @@ module UseCase
 
   	def create
   		@persistedPhone = PersistentPhone.create!(:name => @phone[:name], :user => @user)
+      Detail.create({:snippet => @phone[:snippet], :persistent_phone_id => @persistedPhone})
+      @persistedPhone
   	end
 
     def update
