@@ -68,4 +68,18 @@ angular.module('phonecatApp')
 
   }
 
+})
+
+.factory('getFaceobookImage', function($http){
+  return function(id){
+    var picturePath = ['http://graph.facebook.com/', id,
+      '/picture','?type=small&redirect=false'].join('');
+    return $http.get(picturePath).then(function(response){
+      var data = { id: rawData.id, name: rawData.name };
+      data.pictureURL = response.data.data;
+
+      angular.extend(currentUser, data);
+    });
+  };
+
 });
