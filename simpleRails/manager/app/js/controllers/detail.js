@@ -21,6 +21,11 @@ angular.module('phonecatApp')
 		return $scope.isPhoneDeleted && $scope.details.length;
 	};
 
+	$scope.$on('delete-phone', function(data){
+		console.log('something deleted', data);
+		// deletedPhone();
+	});
+
 	angularSocket.on('new-detail', function(data){
 		$scope.$apply(function(){
 			addDetail(JSON.parse(data));

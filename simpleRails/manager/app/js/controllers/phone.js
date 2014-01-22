@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.controller('PhoneIndexCtrl', function ($scope, $state, $stateParams, indexOfByID, phoneResource, angularSocket) {
+.controller('PhoneIndexCtrl', function ($scope, $state, $stateParams, $rootScope, indexOfByID, phoneResource, angularSocket) {
 
 	init();
 
@@ -20,6 +20,7 @@ angular.module('phonecatApp')
 				// failllll someone do something
 			} else {
 				deletePhone(response.data.data);
+
 			}
 		});
 	};
@@ -53,9 +54,11 @@ angular.module('phonecatApp')
 		});
 
 		angularSocket.on('delete-phone', function(data){
+			parsed = JSON.parse(data);
 			$scope.$apply(function(){
-				deletePhone(JSON.parse(data));
+				deletePhone(parsed);
 			});
+			$rootScope.$broadcast('delete-phone', parsed);
 		});
 	}
 
