@@ -75,6 +75,7 @@ angular.module('phonecatApp')
     var picturePath = ['http://graph.facebook.com/', id,
       '/picture','?type=small&redirect=false'].join('');
     return $http.get(picturePath).then(function(response){
+      console.log('urlllllll', response.url);
       return response.url;
     });
   };
