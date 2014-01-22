@@ -11,7 +11,7 @@ module Api
       phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
       if result = phone.update
         jsonSuccess(phone.returnedData)
-        phone.toRedis('edit-phone')
+        phone.toRedis('update-phone')
       else
         jsonFail(result.errors.full_messages)
       end
