@@ -42,9 +42,10 @@ module Api
     def destroy
       persistedPhone = PersistentPhone.find_by_id(params[:id])
       result = persistedPhone.delete
-      if result = phone.delete
+      if result
         jsonSuccess(result)
-        @redis.publish('delete-phone', {:id => params[:id], :sessionID => params['sessionID']}.to_json)
+        @redis.publish('delete-phone',
+          {:id => params[:id], :sessionID => params['sessionID']}.to_json)
       else
         jsonFail(result.errors.full_messages)
       end
