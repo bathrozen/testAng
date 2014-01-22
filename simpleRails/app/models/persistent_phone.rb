@@ -5,10 +5,9 @@ class PersistentPhone < ActiveRecord::Base
 
     def self.addPhone(phoneData, user)
       phoneObj = PersistentPhone.create(:name => phoneData['name'], :user => user)
-      if !phoneData['snippet'].nil?
-        Detail.create({:snippet => phoneData['snippet'], :phone => phoneObj})
-      end
+      # if !phoneData['snippet'].nil?
+        Detail.create({:snippet => phoneData['snippet'], :persistent_phone_id => phoneObj[:id]})
+      # end
       phoneObj
     end
-
 end
