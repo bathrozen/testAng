@@ -21,7 +21,7 @@ angular.module('phonecatApp')
 		return $scope.isPhoneDeleted && $scope.details.length;
 	};
 
-	$scope.$on('delete-phone', function(data){
+	$scope.$on('delete-phone', function(evt, data){
 		console.log('something deleted', data);
 		// deletedPhone();
 	});
