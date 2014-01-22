@@ -8,9 +8,6 @@ class ApplicationController < ActionController::Base
 
   def facebook_authen
     return if signed_in?
-    p 'hey params'
-    p params
-    p 'endddddddd'
     return if params['facebookID'].nil?
 
     unless user = User.find_by_facebookID(params['facebookID'])

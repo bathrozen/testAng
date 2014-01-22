@@ -49,11 +49,6 @@ module Api
       else
         jsonFail(result.errors.full_messages)
       end
-      # persistedPhone = Phone.find_by_id(params[:id])
-      # phone = attrFilter(persistedPhone, params['sessionID'])
-      # @redis.publish('delete-phone', phone.to_json)
-      # persistedPhone.destroy
-      # render :json => {:status => 'success', :data => phone}
     end
 
   end

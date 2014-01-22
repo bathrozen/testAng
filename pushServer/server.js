@@ -5,7 +5,6 @@ var express = require('express'),
   redis = require('redis'),
   redisClient = redis.createClient(),
   sockets = {};
-  // ioSocket = io.sockets;
 
 app.use( express.static(__dirname + '/socket.io'));
 
