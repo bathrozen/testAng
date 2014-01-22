@@ -44,7 +44,7 @@ module Api
       result = persistedPhone.delete
       if result
         jsonSuccess(result)
-        @redis.publish('delete-phone',
+        Redis.new.publish('delete-phone',
           {:id => params[:id], :sessionID => params['sessionID']}.to_json)
       else
         jsonFail(result.errors.full_messages)
