@@ -22,11 +22,8 @@ angular.module('phonecatApp')
 	};
 
 	$scope.$on('delete-phone', function(evt, id){
-		console.log('id', id);
 		if ($stateParams.id == id){
-			$scope.$apply(function(){
-				$scope.details = [{snippet: 'phone has been deleted'}];
-			});
+			$scope.details = [{snippet: 'phone has been deleted'}];
 		}
 		$scope.isPhoneDeleted = true;
 	});
