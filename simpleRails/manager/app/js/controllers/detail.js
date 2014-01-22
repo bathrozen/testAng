@@ -22,8 +22,8 @@ angular.module('phonecatApp')
 	};
 
 	$scope.$on('delete-phone', function(evt, data){
-		console.log('something deleted', data);
-		// deletedPhone();
+		console.log('deleted');
+		deletedPhone(id);
 	});
 
 	angularSocket.on('new-detail', function(data){
@@ -33,20 +33,15 @@ angular.module('phonecatApp')
 	});
 
 	angularSocket.on('delete-phone', function(data){
-		parsed = JSON.parse(data);
-		if ($stateParams.id == parsed.id){
-			$scope.$apply(function(){
-				$scope.details = [{snippet: 'phone has been deleted'}];
-			});
-		}
-		$scope.isPhoneDeleted = true;
+		id = JSON.parse(data);
+		deletedPhone(id);
 	});
 
 	function addDetail(detail){
 		if ($stateParams.id == detail.phone_id){ $scope.details.push(detail); }
 	}
 
-	function deletedPhone(){
+	function deletedPhone(id){
 		if ($stateParams.id == phone.id){
 			$scope.details = [{snippet: 'phone has been deleted'}];
 		}
