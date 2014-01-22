@@ -51,6 +51,7 @@ angular.module('phonecatApp')
 			$scope.$apply(function(){
 				updatePhone(JSON.parse(data).phone);
 			});
+			$rootScope.$broadcast('delete-phone', id);
 		});
 
 		angularSocket.on('delete-phone', function(data){
@@ -73,7 +74,6 @@ angular.module('phonecatApp')
 	function deletePhone(id){
 		var target = indexOfByID(id, $scope.phones)[0];
 		$scope.phones.splice(target, 1);
-		$rootScope.$broadcast('delete-phone', id);
 	}
 
 })
