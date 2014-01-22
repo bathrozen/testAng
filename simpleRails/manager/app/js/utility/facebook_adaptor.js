@@ -71,7 +71,9 @@ angular.module('phonecatApp')
 })
 
 .factory('getFaceobookImage', function($http){
+  console,log('load111');
   return function(id){
+    console,log('load222');
     var picturePath = ['http://graph.facebook.com/', id,
       '/picture','?type=small&redirect=false'].join('');
     return $http.get(picturePath).then(function(response){
