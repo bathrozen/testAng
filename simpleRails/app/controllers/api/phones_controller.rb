@@ -40,10 +40,11 @@ module Api
     end
 
     def destroy
-      phone = UseCase::Phone.delete(params[:id], params[:sessionID])
+      persistedPhone = PersistentPhone.find_by_id(params[:id])
+      result = persistedPhone.delete
       if result = phone.delete
         jsonSuccess(result)
-        @redis.publish('delete-phone', {:id => params[:id]}.to_json)
+        @redis.publish('delete-phone', {:id => params[:id], :sessionID => params['sessionID']}.to_json)
       else
         jsonFail(result.errors.full_messages)
       end

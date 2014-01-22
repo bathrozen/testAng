@@ -39,8 +39,8 @@ module UseCase
       phones
     end
 
-    def self.delete(id, sessionID)
-      @persistedPhone = PersistentPhone.find_by_id(@phone[:id])
+    def self.delete(id)
+      @persistedPhone = PersistentPhone.find_by_id(id)
       @persistedPhone.delete
     end
 
