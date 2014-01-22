@@ -29,7 +29,7 @@ angular.module('phonecatApp')
 
 	angularSocket.on('delete-phone', function(data){
 		console.log('delete data', data);
-		if ($stateParams.id == phone.id){
+		if ($stateParams.id == data.id){
 			$scope.details = [{snippet: 'phone has been deleted'}];
 		}
 		$scope.isPhoneDeleted = true;
