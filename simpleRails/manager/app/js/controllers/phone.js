@@ -59,9 +59,9 @@ angular.module('phonecatApp')
 		});
 	}
 
-	function newPhone(phone){
-		console.log('new-phone', phone);
-		$scope.phones.push(phone);
+	function newPhone(phoneData){
+		console.log('new-phone', phoneData);
+		$scope.phones.push(phoneData.phone);
 	}
 
 	function updatePhone(phone){
