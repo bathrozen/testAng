@@ -11,7 +11,7 @@
           <div class="toggle-area phone-edit" edit-state="editState">
             <!-- <span class="facebook-field">facebookID: {{phone.facebookID}}</span> -->
          <!--    <img src="http://graph.facebook.com/{{phone.facebookID}}/picture?type=small&redirect=false"> -->
-            <img ng-src="{{getFaceobookImage(phone.facebookID)}}">
+            <img ng-src="http://graph.facebook.com/{{phone.facebookID}}/picture?type=small&redirect=false">
             <span class="content-field" ng-hide="editState">{{phone.name}}</span>
             <input class="input-field" ng-show="editState" ng-model="phone.name">
           </div>
