@@ -7,7 +7,7 @@ angular.module('phonecatApp')
 		var data = {snippet: $scope.detailField, phone_id: $stateParams.id};
 		newDetail(data).then(function(response){
 			if (response.data.status === 'fail') {
-				// failllll someone do something
+				// faillllll someone do something
 			}
 		});
 	};
