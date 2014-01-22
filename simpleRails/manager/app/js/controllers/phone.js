@@ -58,7 +58,6 @@ angular.module('phonecatApp')
 			$scope.$apply(function(){
 				deletePhone(parsed);
 			});
-			$rootScope.$broadcast('delete-phone', parsed);
 		});
 	}
 
@@ -74,6 +73,7 @@ angular.module('phonecatApp')
 	function deletePhone(id){
 		var target = indexOfByID(id, $scope.phones)[0];
 		$scope.phones.splice(target, 1);
+		$rootScope.$broadcast('delete-phone', id);
 	}
 
 })
