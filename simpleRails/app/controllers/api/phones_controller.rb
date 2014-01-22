@@ -30,6 +30,8 @@ module Api
     end
 
     def create
+      p '@@@@@@@@@@@@@@@@@'
+      p params
       phone = UseCase::Phone.new(params[:phone], current_user, params[:sessionID])
       if result = phone.create
         jsonSuccess(phone.returnedData)
