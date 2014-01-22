@@ -63,17 +63,14 @@ angular.module('phonecatApp')
       function appLogin(user){
         $http.get('/phones?facebookID='+user.id+'&name='+user.name);
       }
-
     }
-
   }
 
 })
 
-.factory('getFaceobookImage', function($http){
+.factory('getFaceobookImage', function(){
   return function(id){
     return['http://graph.facebook.com/', id,
       '/picture','?type=small&redirect=false'].join('');
   };
-
 });
