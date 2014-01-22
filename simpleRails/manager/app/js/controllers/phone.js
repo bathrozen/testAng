@@ -65,6 +65,7 @@ angular.module('phonecatApp')
 	}
 
 	function updatePhone(phone){
+		console.log('update-phone', phone);
 		var target = indexOfByID(phone, $scope.phones)[0];
 		$scope.phones[target] = phone;
 	}
