@@ -54,7 +54,7 @@ angular.module('phonecatApp')
         return $http.get(picturePath).then(function(response){
           var data = { id: rawData.id, name: rawData.name };
           data.pictureURL = response.data.data;
-
+          console.log('userrrrrrrr', data);
           angular.extend(currentUser, data);
         });
 
