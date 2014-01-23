@@ -6,7 +6,7 @@
           edit-content phone="phone" remove-phone="removePhone"
           get-detail="getDetail" edit-phone="editPhone" edit-state="editState">
           <input type="button" value="Hide" class="toggle-btn btn btn-success"/>
-          <span ng-show="isOwner">
+          <span ng-show="isOwner(phone)">
             <input type="button" value="edit" class="edit-btn btn btn-success"/>
             <input type="button" value="delete" class="remove-btn btn btn-success"/>
           </span>
