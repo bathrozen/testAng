@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.controller('PhoneIndexCtrl', function ($scope, $state, $stateParams, $rootScope, indexOfByID, phoneResource, angularSocket) {
+.controller('PhoneIndexCtrl', function ($scope, $state, $stateParams, $rootScope, indexOfByID, phoneResource, angularSocket, currentUser) {
 
 	init();
 
@@ -75,6 +75,10 @@ angular.module('phonecatApp')
 		var target = indexOfByID(id, $scope.phones)[0];
 		$scope.phones.splice(target, 1);
 	}
+
+	$scope.isOwner = function(phone){
+		return phone.facebookID === currentUser.facebookID;
+	};
 
 })
 
