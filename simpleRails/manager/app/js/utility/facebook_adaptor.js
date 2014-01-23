@@ -40,8 +40,8 @@ angular.module('phonecatApp')
       FB.api('/me', function(response) {
         scope.$apply(function(){
           scope.isLogin = true;
-          currentUser.facebookID = rawData.id;
-          currentUser.name = rawData.name;
+          currentUser.facebookID = response.id;
+          currentUser.name = response.name;
         });
         appLogin(response);
 
