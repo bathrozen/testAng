@@ -51,6 +51,7 @@ angular.module('phonecatApp')
       function getUserData(rawData){
         var picturePath = ['http://graph.facebook.com/', rawData.id,
               '/picture','?type=small&redirect=false'].join('');
+              console.log('currentUserrrrrrrrr', currentUser);
         return $http.get(picturePath).then(function(response){
           currentUser.id = rawData.id;
           currentUser.name = rawData.name;
