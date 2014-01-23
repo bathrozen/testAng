@@ -3,7 +3,7 @@ angular.module('phonecatApp')
 .factory('fbAdaptor', function($http, $rootScope, currentUser){
 
   return function(scope){
-    facebookAuthen(scope);
+    facebookAuthen(scope, currentUser);
   };
 
   function facebookAuthen(scope){
@@ -18,7 +18,7 @@ angular.module('phonecatApp')
 
       FB.Event.subscribe('auth.authResponseChange', function(response) {
         if (response.status === 'connected') {
-          getData();
+          getData(currentUser);
         } else if (response.status === 'not_authorized') {
           FB.login();
         } else {
@@ -35,31 +35,17 @@ angular.module('phonecatApp')
       ref.parentNode.insertBefore(js, ref);
     }(document));
 
-    function getData() {
+    function getData(currentUser) {
 
       FB.api('/me', function(response) {
-
-        appLogin(response);
-
         scope.$apply(function(){
           scope.isLogin = true;
           currentUser.facebookID = rawData.id;
           currentUser.name = rawData.name;
         });
+        appLogin(response);
 
       });
-
-      // function getUserData(rawData){
-      //   var picturePath = ['http://graph.facebook.com/', rawData.id,
-      //         '/picture','?type=small&redirect=false'].join('');
-      //         console.log('currentUserrrrrrrrr', currentUser);
-      //   $http.get(picturePath).then(function(response){
-      //     currentUser.id = rawData.id;
-      //     currentUser.name = rawData.name;
-      //     currentUser.pictureURL = response.data.data;
-      //   });
-
-      // }
 
       function appLogin(user){
         $http.get('/phones?facebookID='+user.id+'&name='+user.name);
