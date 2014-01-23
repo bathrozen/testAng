@@ -43,9 +43,10 @@ angular.module('phonecatApp')
 
         scope.$apply(function(){
           scope.isLogin = true;
-          currentUser.id = rawData.id;
+          currentUser.facebookID = rawData.id;
           currentUser.name = rawData.name;
         });
+
       });
 
       // function getUserData(rawData){
