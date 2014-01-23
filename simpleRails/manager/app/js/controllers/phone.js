@@ -77,8 +77,9 @@ angular.module('phonecatApp')
 	}
 
 	$scope.isOwner = function(phone){
-		console.log('iswoner', phone.facebookID === currentUser.facebookID);
-		return phone.facebookID === currentUser.facebookID;
+		console.log('phone', phone.facebookID);
+		console.log('user', currentUser.facebookID);
+		return phone.facebookID == currentUser.facebookID;
 	};
 
 })
