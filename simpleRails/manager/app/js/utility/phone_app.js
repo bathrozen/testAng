@@ -36,7 +36,8 @@ angular.module('phonecatApp')
 })
 
 .factory('currentUser', function(){
-  return {};
+  var user = {};
+  return user;
 })
 
 .factory('angularSocket', function($rootScope){
