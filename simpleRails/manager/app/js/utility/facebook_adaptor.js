@@ -52,11 +52,9 @@ angular.module('phonecatApp')
         var picturePath = ['http://graph.facebook.com/', rawData.id,
               '/picture','?type=small&redirect=false'].join('');
         return $http.get(picturePath).then(function(response){
-          var data = currentUser;
-          data = { id: rawData.id, name: rawData.name };
-          data.pictureURL = response.data.data;
-          // console.log('userrrrrrrr', data);
-          // angular.extend(currentUser, data);
+          currentUser.id = rawData.id;
+          currentUser.name = rawData.name;
+          currentUser.pictureURL = response.data.data;
         });
 
       }
