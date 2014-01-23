@@ -43,22 +43,22 @@ angular.module('phonecatApp')
 
         scope.$apply(function(){
           scope.isLogin = true;
-        });
-
-        return getUserData(response);
-      });
-
-      function getUserData(rawData){
-        var picturePath = ['http://graph.facebook.com/', rawData.id,
-              '/picture','?type=small&redirect=false'].join('');
-              console.log('currentUserrrrrrrrr', currentUser);
-        return $http.get(picturePath).then(function(response){
           currentUser.id = rawData.id;
           currentUser.name = rawData.name;
-          currentUser.pictureURL = response.data.data;
         });
+      });
 
-      }
+      // function getUserData(rawData){
+      //   var picturePath = ['http://graph.facebook.com/', rawData.id,
+      //         '/picture','?type=small&redirect=false'].join('');
+      //         console.log('currentUserrrrrrrrr', currentUser);
+      //   $http.get(picturePath).then(function(response){
+      //     currentUser.id = rawData.id;
+      //     currentUser.name = rawData.name;
+      //     currentUser.pictureURL = response.data.data;
+      //   });
+
+      // }
 
       function appLogin(user){
         $http.get('/phones?facebookID='+user.id+'&name='+user.name);
