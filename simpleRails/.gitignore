@@ -12,3 +12,6 @@ db/schema.rb
 /tmp
 
 Gemfile.lock
+
+/manager/node_modules
+../pushServer/node_modules
