@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function($http, $rootScope, currentUser){
+.factory('fbAdaptor', function($http, $rootScope, currentUser, facebookAppConfig){
 
   return function(scope){
     facebookAuthen(scope, currentUser);
@@ -9,12 +9,7 @@ angular.module('phonecatApp')
   function facebookAuthen(scope){
 
     window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '420575864742428',
-        status     : true,
-        cookie     : true,
-        xfbml      : true
-      });
+      FB.init(facebookAppConfig);
 
       FB.Event.subscribe('auth.authResponseChange', function(response) {
         if (response.status === 'connected') {
@@ -44,7 +39,6 @@ angular.module('phonecatApp')
           currentUser.name = response.name;
         });
         appLogin(response);
-
       });
 
       function appLogin(user){
@@ -53,11 +47,4 @@ angular.module('phonecatApp')
     }
   }
 
-})
-
-.factory('getFaceobookImage', function(){
-  return function(id){
-    return['http://graph.facebook.com/', id,
-      '/picture','?type=small&redirect=false'].join('');
-  };
 });
