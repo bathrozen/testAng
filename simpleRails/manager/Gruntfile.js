@@ -6,9 +6,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-angular-templates');
   grunt.loadNpmTasks('grunt-karma');
 
-  // grunt.loadNpmTasks('grunt-contrib-less');
-
-  // Project configuration.
   grunt.initConfig({
     concat: {
       options: {separator: ';'},
@@ -22,7 +19,6 @@ module.exports = function(grunt) {
           'app/js/utility/*',
 
           '.build/templates.js',
-
         ],
         dest: '.build/script.js'
       },
@@ -40,7 +36,6 @@ module.exports = function(grunt) {
         'app/js/controllers/*',
         'app/js/directives/*',
         'app/js/utility/*',
-        'app/js/real_time/*',
         'app/index.html',
 
         'app/views/partials/*.html',
