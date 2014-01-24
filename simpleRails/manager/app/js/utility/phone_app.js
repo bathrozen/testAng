@@ -40,8 +40,8 @@ angular.module('phonecatApp')
   return user;
 })
 
-.factory('angularSocket', function($rootScope){
-  var socket = io.connect('http://warm.paiges.net:4000',{
+.factory('angularSocket', function($rootScope, realtimeServerConf){
+  var socket = io.connect(realtimeServerConf,{
     'sync disconnect on unload': true });
   socket.emit('join');
   return socket;

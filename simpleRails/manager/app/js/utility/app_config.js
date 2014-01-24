@@ -7,4 +7,8 @@ angular.module('phonecatApp')
 	cookie: true,
 	xfbml:  true
   };
+})
+
+.factory('realtimeServerConf', function(){
+	return 'http://warm.paiges.net:4000';
 });
