@@ -1,8 +1,8 @@
 angular.module('phonecatApp')
 
-.factory('facebookAppConfig', function(){
+.factory('facebookAppConf', function(){
   return {
-	appId:  '420575864742428',
+	appId:  '420575864742428', // your facebook app id here
 	status: true,
 	cookie: true,
 	xfbml:  true
@@ -10,5 +10,5 @@ angular.module('phonecatApp')
 })
 
 .factory('realtimeServerConf', function(){
-	return 'http://warm.paiges.net:4000';
+	return 'http://warm.paiges.net:4000'; // your realtime server here
 });

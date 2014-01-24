@@ -1,6 +1,6 @@
 angular.module('phonecatApp')
 
-.factory('fbAdaptor', function($http, $rootScope, currentUser, facebookAppConfig){
+.factory('fbAdaptor', function($http, $rootScope, currentUser, facebookAppConf){
 
   return function(scope){
     facebookAuthen(scope, currentUser);
@@ -9,7 +9,7 @@ angular.module('phonecatApp')
   function facebookAuthen(scope){
 
     window.fbAsyncInit = function() {
-      FB.init(facebookAppConfig);
+      FB.init(facebookAppConf);
 
       FB.Event.subscribe('auth.authResponseChange', function(response) {
         if (response.status === 'connected') {
